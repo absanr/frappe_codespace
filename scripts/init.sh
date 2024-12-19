@@ -10,6 +10,11 @@ fi
 
 rm -rf /workspaces/frappe_codespace/.git
 
+# Set permissions for the current script
+SCRIPT_PATH="$(realpath "$0")"
+chmod +x "$SCRIPT_PATH"
+echo "Permisos configurados para: $SCRIPT_PATH"
+
 source /home/frappe/.nvm/nvm.sh
 nvm alias default 18
 nvm use 18
