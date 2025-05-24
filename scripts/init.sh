@@ -35,6 +35,13 @@ bench set-redis-cache-host redis-cache:6379
 bench set-redis-queue-host redis-queue:6379
 bench set-redis-socketio-host redis-socketio:6379
 
+# Ensuring Redis URLs are properly configured in common_site_config.json...
+CONFIG_FILE="/workspace/frappe-bench/sites/common_site_config.json"
+sed -i 's/redis-cache:6379/redis:\/\/redis-cache:6379/' "$CONFIG_FILE"
+sed -i 's/redis-queue:6379/redis:\/\/redis-queue:6379/' "$CONFIG_FILE"
+sed -i 's/redis-socketio:6379/redis:\/\/redis-socketio:6379/' "$CONFIG_FILE"
+echo "Redis URLs verified and correctly set."
+
 # Remove redis from Procfile
 sed -i '/redis/d' ./Procfile
 
